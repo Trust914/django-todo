@@ -1,0 +1,69 @@
+{% load crispy_forms_tags %} {% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="{%static 'css/index.css'%}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+
+  <body class="container-fluid">
+    {% if messages %} {% for message in messages %}
+    <div class="alert alert-info">
+      <strong>{{message}}</strong>
+    </div>
+    {% endfor %} {% endif %}
+
+    <center class="row">
+      <h1>TODO APP By :: Django</h1>
+    </center>
+
+    <div class="row">
+      <div class="container">
+        <div class="card">
+          <form method="POST">
+            {% csrf_token %} {{forms|crispy}}
+            <input type="submit" class="btn btn-default" value="submit" />        
+          </form>
+        </div>
+      {% for i in list %}
+      <div class="card">
+        <div class="box">
+          <div class="content">
+            <h3>{{i.title}}</h3>
+            <h3>
+                {{i.value}}
+            </h3>
+            <p>
+                {{i.date}}
+            </p>
+            <form
+        action="/del/{{i.id}}"
+        method="POST"
+        style="padding-right: 4%; padding-bottom: 3%"
+      >
+        {% csrf_token %}
+        <button
+          value="remove"
+          type="submit"
+          class="btn btn-primary"
+          style="float: right"
+        >
+          <span ></span> &nbsp; Remove 
+        </button>
+      </form>
+            
+          </div>
+        </div>
+      </div>
+      {% endfor%}
+    </div>
+  </body>
+</html>
