@@ -15,7 +15,7 @@ pipeline {
   stages {
     stage('Fetch code'){
       steps {
-        git branch: 'main', url: 'https://github.com/tushargangurde2029/django-todo.git'
+        git branch: 'main', url: 'git@github.com:Trust914/django-todo.git'
       }
     }
 
