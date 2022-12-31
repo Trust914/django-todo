@@ -20,7 +20,7 @@ pipeline {
                 branches: [[name: '*/main' ]],
                 extensions: scm.extensions,
                 userRemoteConfigs: [[
-                    url: 'https://github.com/Trust914/django-todo.git',
+                    url: 'git@github.com:Trust914/django-todo.git',
                     credentialsId: 'github-ssh'
                 ]]
             ])
