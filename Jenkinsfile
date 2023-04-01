@@ -6,11 +6,11 @@ pipeline {
   }
 
   environment {
-    registryCredential = 'ecr:us-east-1:awscreds'
-    appRegistry = "869704209971.dkr.ecr.us-east-1.amazonaws.com/django-todo"
-    vprofileRegistry = "https://869704209971.dkr.ecr.us-east-1.amazonaws.com"
-    cluster = "django-todo-cluster"
-    service = "django-todo-svc"
+    registryCredential = 'REGISTRY_CREDENTIALS'
+    appRegistry = "AWS_ECR_REGISTRY"
+    vprofileRegistry = "AWS_ECR_REGISTRY_URL"
+    cluster = "YOUR_DJANGO_CLUSTER_ON_AWS"
+    service = "YOUR_DJANGO_SERVICE_ON_AWS"
   }
   stages {
     stage('Fetch code'){
@@ -21,7 +21,7 @@ pipeline {
                 extensions: scm.extensions,
                 userRemoteConfigs: [[
                     url: 'git@github.com:Trust914/django-todo.git',
-                    credentialsId: 'github-ssh'
+                    credentialsId: 'GITHUB_CREDENTIALS'
                 ]]
             ])
       }
